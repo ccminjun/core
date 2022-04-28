@@ -1,10 +1,16 @@
 package hello.core.member;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     // 뒤에 안써주면 NullPointException이 터짐
     private final MemberRepository memberRepository;
 
+    @Autowired //ac.getBean(MemberRepository.class
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
@@ -18,4 +24,11 @@ public class MemberServiceImpl implements MemberService{
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+
+    // 테스트 용도도
+   public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }
+
